@@ -1,5 +1,5 @@
 module BrownDriverBriggs
 
-greet() = print("Hello World!")
+include("sefaria.jl")
 
 end # module BrownDriverBriggs
