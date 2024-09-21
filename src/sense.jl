@@ -69,3 +69,28 @@ function subsenses(s::Sense)::Vector{Sense}
         Sense[]
     end
 end
+
+function html_string(s::Sense)::String
+    formatted = String[]
+    if ! isnothing(label(s))
+        push!(formatted, label(s))
+    end
+
+	if ! isnothing(definition(s))
+		push!(formatted, definition(s))
+	end
+    if ! isnothing(verbform(s))
+		push!(formatted, "<code>$(verbform(s))</code>")
+	end
+	
+
+    if ! isempty(subsenses(s))
+        push!(formatted, "<ul>")
+        map(subsenses(s)) do subsense
+            push!(formatted, html_string(subsense))
+        end
+        push!(formatted, "</ul>")
+    end
+  
+	join(formatted,"\n")
+end

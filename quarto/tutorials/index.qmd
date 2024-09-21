@@ -1,3 +1,13 @@
 # Tutorials
 
-TBA
+## Quick start
+
+
+```{julia}
+using BrownDriverBriggs 
+articles = bdb("בָּרָ֣א")
+```
+
+```{julia}
+senses(articles[3])
+```

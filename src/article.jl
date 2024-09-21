@@ -73,3 +73,20 @@ $(SIGNATURES)
 function senses(a::Article)
 	map(s -> Sense(s), a.json.content.senses)
 end
+
+
+function html_string(a::Article; level = 3)::String
+	formatted = String[]
+
+	push!(formatted, """<h$(level)> $(headword(a))</h$(level)>""")
+
+	singpl = length(senses(a)) == 1 ? "" : "s"
+	push!(formatted, """<p>Article  <code>$(id(a))</code> has <b>$(length(senses(a)))</b> sense$(singpl)</p>""")
+
+
+	for s in senses(a)
+		push!(formatted, html_string(s))
+	end
+
+	join(formatted, "\n\n")
+end

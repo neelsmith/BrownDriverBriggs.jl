@@ -9,6 +9,7 @@ using TestSetExtensions
 using Documenter, DocStringExtensions
 
 export bdb
+export html_string
 
 export Article
 export id, headword, strong_numbers
