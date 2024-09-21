@@ -1,0 +1,1 @@
+LEXICON_API = "https://www.sefaria.org/api/words/"
