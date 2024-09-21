@@ -1,1 +1,9 @@
 # BrownDriverBriggs.jl
+
+`BrownDriverBriggs` is a light wrapper around [Sefaria's API](https://developers.sefaria.org/reference/getting-started-with-your-api).
+
+It uses the endpoint at `https://www.sefaria.org/api/words` to retrieve articles from Sefaria's digital version of Brown, Driver and Brigg's *A Hebrew and English Lexicon of the Old Testament*. `BrownDriverBriggs` provides a Julia model for articles and sections of articles, and functions for working with them.
+
+
+- See [an introductory tutorial](./tutorials/)
+- See [reference material](./reference/), including API documentation

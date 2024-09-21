@@ -3,3 +3,4 @@ Manifest.toml
 *.~
 _site/
 _freeze/
+.vscode/

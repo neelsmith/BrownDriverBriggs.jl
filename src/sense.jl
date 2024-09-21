@@ -29,7 +29,8 @@ function longlabel(s::Sense)
     bottom = if isempty(subsenses(s))
         ""
     else
-        "with $(length(subsenses(s))) subsections"
+        sgpl = length(subsenses(s)) == 1 ? "" : "s"
+        "with $(length(subsenses(s))) subsection$(sgpl)"
     end
     join([top,middle,bottom], " ")
 end
