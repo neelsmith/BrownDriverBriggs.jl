@@ -5,6 +5,17 @@ struct Article
 end
 
 
+"""Override Base.show for a BDB article.
+$(SIGNATURES)
+"""
+function show(io::IO, a::Article)
+    print(io, label(a))
+end
+
+function label(a::Article)
+	string(headword(a), " (", id(a), ")")
+end
+
 """Find all BDB articles for a given token.
 $(SIGNATURES)
 """

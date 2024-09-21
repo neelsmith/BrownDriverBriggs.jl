@@ -3,6 +3,38 @@ struct Sense
     json::JSON3.Object
 end
 
+"""Override Base.show for a BDB article.
+$(SIGNATURES)
+"""
+function show(io::IO, s::Sense)
+    print(io, longlabel(s))
+end
+
+function longlabel(s::Sense)
+    top = if isnothing(label(s)) 
+        if isnothing(definition(s))
+            "subsection"
+        else
+            "subsection (with definition)"
+        end
+    else
+        "section $(label(s))"
+    end
+
+    middle = if isnothing(verbform(s))
+        ""
+    else
+        string("for verb form ", verbform(s))
+    end
+    bottom = if isempty(subsenses(s))
+        ""
+    else
+        "with $(length(subsenses(s))) subsections"
+    end
+    join([top,middle,bottom], " ")
+end
+
+
 """BDB label for a sense or subsense in an article.
 $(SIGNATURES)
 """

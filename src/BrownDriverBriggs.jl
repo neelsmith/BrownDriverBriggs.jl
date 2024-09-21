@@ -1,5 +1,7 @@
 module BrownDriverBriggs
 
+import Base: show
+
 using JSON3
 using Downloads
 
