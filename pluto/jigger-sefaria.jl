@@ -20,11 +20,73 @@ TableOfContents()
 # ╔═╡ 93f263f6-77ae-11ef-2fe0-c34499455c33
 md""" # Reverse engineer Sefaria"""
 
+# ╔═╡ 3ceb6ccc-cc4c-4aa3-b05e-d83ba693864a
+md"""### Noun"""
+
+# ╔═╡ 56ee851c-4080-4541-b991-05d01e60901e
+nountkn = "בְּרֵאשִׁ֖ית"
+
+# ╔═╡ 6e42c96b-8bec-4805-863d-0604fe467f38
+md"""### Particle"""
+
+# ╔═╡ 327140ca-af29-4c15-adb9-7c91799617cf
+prtcl = "אֵ֥ת"
+
+# ╔═╡ d24420bd-1b6e-4101-a56a-bd3e8cb29bb5
+md"""### Verb"""
+
 # ╔═╡ f4592e31-3cd3-4f8b-af4c-4eb43d7397e4
-tkn = "וּשְׁמַרְתֶּ֗ם"
+verbtkn = "וּשְׁמַרְתֶּ֗ם"
+
+# ╔═╡ 2178586c-5bdb-43a7-931b-1f0754efcf9b
+md"""### Demonstrative"""
+
+# ╔═╡ 8fe2b2aa-4095-48fd-8301-4aba43abb3c0
+dempron = "אֵ֣לֶּה"
+
+# ╔═╡ e9ce1adf-b4c3-4489-9eab-3b87e71e3b68
+#join(map(entry -> format_entry_header(entry; level = 4), demjson), "\n\n") |> HTML
+
+# ╔═╡ 1f5bdf25-e7f2-4d58-a174-199ac3379959
+md"""### Personal pronoun"""
+
+# ╔═╡ d19e5105-a1da-42cb-8c0b-f12bb46d9770
+pron = "וְה֣וּא"
+
+# ╔═╡ a539a604-08f9-4256-8cb1-4e879feded0d
+md"""### Adjective"""
+
+# ╔═╡ 96fc3d3d-b1b3-4b01-abad-a6c670b15149
+adj = "רָעָ֖ה"
+
+# ╔═╡ 2aaf5e92-3d16-4bcb-88c4-f4aa7449ad26
+md"""### Conjunction"""
+
+# ╔═╡ 8128634f-3b4c-4209-bdb0-c5faa8226aac
+conj = "כִּֽי"
+
+# ╔═╡ 2eae3b3e-f51e-4953-9e3e-a0994c3fca13
+
 
 # ╔═╡ 85e2e501-d59b-44c3-886e-720e326cc4ae
 md"""> # For package"""
+
+# ╔═╡ 5ca909d9-1927-4e43-a0f4-adc41200e742
+function format_subsense(sense)
+	formatted = []
+	if haskey(sense, :num)
+		push!(formatted, "<p><code>$(sense.num)</code>")
+	end
+	if haskey(sense, :definition)
+		push!(formatted, sense.definition)
+	end
+
+	if haskey(sense, :num)
+		push!(formatted, "</p>")
+	end
+	
+	join(formatted,"\n\n")
+end
 
 # ╔═╡ d52caedf-86b7-4657-8ea5-6577a4291b85
 function format_bdb_sense(sense)
@@ -36,12 +98,25 @@ function format_bdb_sense(sense)
 		push!(formatted, "<code>$(sense.form)</code>")
 	end
 	if haskey(sense, :senses)
+		for subsense in sense.senses
+			push!(formatted, format_subsense(subsense))
+		end
 	end
 	join(formatted,"\n")
 end
 
-# ╔═╡ 2b5979af-6f73-4edb-ad1a-d6a070a54856
-lexiconapi = "https://www.sefaria.org/api/words/"
+# ╔═╡ fa68a9c0-a9d4-4e8d-bcf0-462b1037f689
+"""HTML header for a single article."""
+function format_entry_header(json; level = 3)
+	lines = []
+	
+	push!(lines, """<h$(level)> $(json.headword)</h$(level)>""")
+
+	singpl = length(json.content.senses) == 1 ? "" : "s"
+	
+	push!(lines, """<p>Article  <code>$(json.rid)</code> has <b>$(length(json.content.senses))</b> sense$(singpl)</p>""")
+	join(lines, "\n\n")
+end
 
 # ╔═╡ ddab8271-610b-45fd-a27f-b79c457dd0f0
 """Download a URL and parse its contents as JSON3."""
@@ -53,47 +128,96 @@ function parse_url(u)
    parsed
 end
 
+# ╔═╡ 2b5979af-6f73-4edb-ad1a-d6a070a54856
+lexiconapi = "https://www.sefaria.org/api/words/"
+
 # ╔═╡ b7d9fdfe-34dd-4cab-93e7-9d7c8c923ddc
-function bdbentry(wd)
-	entries = filter(parse_url(lexiconapi * tkn)) do entry 
+"""Get parsed JSON for all BDB entries for a word."""
+function bdbentries(wd)
+	filter(parse_url(lexiconapi * wd)) do entry 
 		entry.parent_lexicon == "BDB Dictionary"
-	end
-	if length(entries) == 1
-		entries[1]
-	else
-		@debug("Expected 1 BDB article for $(wd) but got $(length(entries))")
-		nothing
 	end
 end
 
+# ╔═╡ 4ba0e778-1a1a-4325-96d4-d73785cf4b4c
+nounjson = bdbentries(nountkn)
+
+# ╔═╡ 4f8159f3-a35b-4b27-8f1d-ee57bd26cd66
+nounjson[1].content.senses[2].senses
+
+# ╔═╡ 8325ed08-67c1-4e38-8ff3-fc904540540b
+particlejson = bdbentries(prtcl)
+
 # ╔═╡ 525002d0-1612-4b7a-93fb-9372519cb0d2
-json = bdbentry(tkn)
+verbjson = bdbentries(verbtkn)
+
+# ╔═╡ 8a8b9eee-69a0-40d2-bbed-770149499d72
+verbjson[1].content.senses[2].senses[1]
 
 # ╔═╡ 62a600eb-895b-464c-9b42-0bdd81af8b5e
-json |> println
-
-# ╔═╡ 0bab0cf7-21ba-438c-9410-77d5ba27337d
-md"""## $(json.headword) (from $(tkn))"""
-
-# ╔═╡ f455b4bb-7223-4ffb-9800-d3196bd670f8
-bdb = filter(parse_url(lexiconapi * tkn)) do entry 
-	entry.parent_lexicon == "BDB Dictionary"
-end[1]
-
-# ╔═╡ 09bca5b2-6002-4c8b-bc3d-4462b64ac44c
-md"""Article has **$(length(bdb.content.senses))** senses"""
+verbjson |> println
 
 # ╔═╡ 730454c6-5a0b-49c1-9858-27376d02fd6f
-bdb.content.senses[3]
+verbjson[1].content.senses[3]
 
 # ╔═╡ d872c78a-970d-48e7-b91f-82100dea12c2
 begin
 	html_out = []
-	for s in bdb.content.senses
+	for s in verbjson[1].content.senses
 		push!(html_out, "<br/>" * format_bdb_sense(s))
 	end
 	join(html_out, "<br/>") |> HTML
 end
+
+# ╔═╡ a6564ea1-aca2-4b18-b71c-55caf446d6b5
+verbjson[1].content.senses[2].senses
+
+# ╔═╡ a80ccf3f-3a62-4cde-ad3b-538aefda4483
+demjson = bdbentries(dempron)
+
+# ╔═╡ 44317728-95a1-4be7-b0b1-1f7398b3c3b9
+pronjson = bdbentries(pron)
+
+# ╔═╡ ef55e28b-a019-4b2a-95f9-afb4072c4e6a
+adjjson = bdbentries(adj)
+
+# ╔═╡ 18c9a1c8-2a06-4c4c-9b25-0caabc06b59f
+conjjson = bdbentries(conj)
+
+# ╔═╡ 88b6429c-775f-4638-a80e-a8bb5783f86a
+function format_results(wd; level = 3)
+	entries = bdbentries(wd)
+
+	hdr = "<h$(level)>$(wd): $(length(entries)) possible articles</h$(level)>"
+	output_html = []
+	for e in entries
+		push!(output_html, format_entry_header(e; level = level + 1))
+
+		for s in e.content.senses
+			push!(output_html, "<br/><i>Sense</i>: " * format_bdb_sense(s))
+		end
+	end
+	join(output_html,"\n\n")
+	
+end
+
+# ╔═╡ 2764acc9-dc3e-422f-bc47-d64e980de931
+format_results(nountkn) |> HTML
+
+# ╔═╡ 6c4f185c-9084-456f-b957-337b35be6c3d
+format_results(prtcl) |> HTML
+
+# ╔═╡ 04c887bc-d33b-4cb3-b6f7-251f992a692f
+format_results(verbtkn) |> HTML
+
+# ╔═╡ 2d681673-c0cd-4c7c-bb0c-e3f4c4a13693
+format_results(pron) |> HTML
+
+# ╔═╡ 709fd355-5506-4e75-9c18-3730e4ac55cc
+format_results(adj) |> HTML
+
+# ╔═╡ 0cfc8313-b689-4b54-b795-cf4da903854e
+format_results(conj) |> HTML
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -468,18 +592,48 @@ version = "17.4.0+2"
 # ╟─e6c60d69-1049-429a-aff1-46eebdb56cd6
 # ╟─10988234-43fd-4b92-be40-9a87df882ce8
 # ╟─93f263f6-77ae-11ef-2fe0-c34499455c33
-# ╟─f4592e31-3cd3-4f8b-af4c-4eb43d7397e4
+# ╟─3ceb6ccc-cc4c-4aa3-b05e-d83ba693864a
+# ╟─56ee851c-4080-4541-b991-05d01e60901e
+# ╠═2764acc9-dc3e-422f-bc47-d64e980de931
+# ╠═4f8159f3-a35b-4b27-8f1d-ee57bd26cd66
+# ╠═4ba0e778-1a1a-4325-96d4-d73785cf4b4c
+# ╟─6e42c96b-8bec-4805-863d-0604fe467f38
+# ╟─327140ca-af29-4c15-adb9-7c91799617cf
+# ╠═6c4f185c-9084-456f-b957-337b35be6c3d
+# ╠═8325ed08-67c1-4e38-8ff3-fc904540540b
+# ╟─d24420bd-1b6e-4101-a56a-bd3e8cb29bb5
+# ╠═f4592e31-3cd3-4f8b-af4c-4eb43d7397e4
+# ╠═04c887bc-d33b-4cb3-b6f7-251f992a692f
+# ╠═8a8b9eee-69a0-40d2-bbed-770149499d72
 # ╠═525002d0-1612-4b7a-93fb-9372519cb0d2
 # ╠═62a600eb-895b-464c-9b42-0bdd81af8b5e
-# ╟─09bca5b2-6002-4c8b-bc3d-4462b64ac44c
 # ╠═730454c6-5a0b-49c1-9858-27376d02fd6f
 # ╠═d872c78a-970d-48e7-b91f-82100dea12c2
-# ╟─0bab0cf7-21ba-438c-9410-77d5ba27337d
+# ╟─2178586c-5bdb-43a7-931b-1f0754efcf9b
+# ╟─8fe2b2aa-4095-48fd-8301-4aba43abb3c0
+# ╠═a80ccf3f-3a62-4cde-ad3b-538aefda4483
+# ╠═e9ce1adf-b4c3-4489-9eab-3b87e71e3b68
+# ╟─1f5bdf25-e7f2-4d58-a174-199ac3379959
+# ╟─d19e5105-a1da-42cb-8c0b-f12bb46d9770
+# ╠═2d681673-c0cd-4c7c-bb0c-e3f4c4a13693
+# ╠═44317728-95a1-4be7-b0b1-1f7398b3c3b9
+# ╟─a539a604-08f9-4256-8cb1-4e879feded0d
+# ╠═96fc3d3d-b1b3-4b01-abad-a6c670b15149
+# ╠═709fd355-5506-4e75-9c18-3730e4ac55cc
+# ╠═ef55e28b-a019-4b2a-95f9-afb4072c4e6a
+# ╟─2aaf5e92-3d16-4bcb-88c4-f4aa7449ad26
+# ╠═8128634f-3b4c-4209-bdb0-c5faa8226aac
+# ╠═0cfc8313-b689-4b54-b795-cf4da903854e
+# ╠═18c9a1c8-2a06-4c4c-9b25-0caabc06b59f
+# ╠═2eae3b3e-f51e-4953-9e3e-a0994c3fca13
 # ╟─85e2e501-d59b-44c3-886e-720e326cc4ae
+# ╠═88b6429c-775f-4638-a80e-a8bb5783f86a
+# ╠═5ca909d9-1927-4e43-a0f4-adc41200e742
 # ╠═d52caedf-86b7-4657-8ea5-6577a4291b85
+# ╠═a6564ea1-aca2-4b18-b71c-55caf446d6b5
+# ╠═fa68a9c0-a9d4-4e8d-bcf0-462b1037f689
 # ╟─b7d9fdfe-34dd-4cab-93e7-9d7c8c923ddc
-# ╟─2b5979af-6f73-4edb-ad1a-d6a070a54856
-# ╟─f455b4bb-7223-4ffb-9800-d3196bd670f8
 # ╟─ddab8271-610b-45fd-a27f-b79c457dd0f0
+# ╟─2b5979af-6f73-4edb-ad1a-d6a070a54856
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
