@@ -185,7 +185,7 @@ end
 nounjson = bdbentries(nountkn)
 
 # ╔═╡ 4f8159f3-a35b-4b27-8f1d-ee57bd26cd66
-nounjson[1].content.senses
+nounjson[1]
 
 # ╔═╡ 8325ed08-67c1-4e38-8ff3-fc904540540b
 particlejson = bdbentries(prtcl)
@@ -194,7 +194,7 @@ particlejson = bdbentries(prtcl)
 verbjson = bdbentries(verbtkn)
 
 # ╔═╡ 62a600eb-895b-464c-9b42-0bdd81af8b5e
-verbjson |> println
+verbjson[1].content.senses |> typeof
 
 # ╔═╡ a80ccf3f-3a62-4cde-ad3b-538aefda4483
 demjson = bdbentries(dempron)

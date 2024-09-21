@@ -9,11 +9,19 @@ using Documenter, DocStringExtensions
 export bdb
 
 export Article
-export id
+export id, headword, strong_numbers
+export next_hw, prev_hw
+export senses
+#export next, prev
+
+export Sense
+export label, definition, verbform, subsenses
 
 
 include("json.jl")
 include("html.jl")
-include("sefaria.jl")
+include("sense.jl")
+include("article.jl")
+
 
 end # module BrownDriverBriggs
