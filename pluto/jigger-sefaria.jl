@@ -21,49 +21,49 @@ TableOfContents()
 md""" # Reverse engineer Sefaria"""
 
 # ╔═╡ 3ceb6ccc-cc4c-4aa3-b05e-d83ba693864a
-md"""### Noun"""
+md"""## Noun"""
 
 # ╔═╡ 56ee851c-4080-4541-b991-05d01e60901e
 nountkn = "בְּרֵאשִׁ֖ית"
 
 # ╔═╡ 6e42c96b-8bec-4805-863d-0604fe467f38
-md"""### Particle"""
+md"""## Particle and preposition"""
 
 # ╔═╡ 327140ca-af29-4c15-adb9-7c91799617cf
 prtcl = "אֵ֥ת"
 
 # ╔═╡ d24420bd-1b6e-4101-a56a-bd3e8cb29bb5
-md"""### Verb"""
+md"""## Verb"""
+
+# ╔═╡ 8754f20a-4542-48c1-b9ec-2468893606c5
+v2 = "בָּרָ֣א"
 
 # ╔═╡ f4592e31-3cd3-4f8b-af4c-4eb43d7397e4
 verbtkn = "וּשְׁמַרְתֶּ֗ם"
 
 # ╔═╡ 2178586c-5bdb-43a7-931b-1f0754efcf9b
-md"""### Demonstrative"""
+md"""## Demonstrative"""
 
 # ╔═╡ 8fe2b2aa-4095-48fd-8301-4aba43abb3c0
 dempron = "אֵ֣לֶּה"
 
 # ╔═╡ 1f5bdf25-e7f2-4d58-a174-199ac3379959
-md"""### Personal pronoun"""
+md"""## Personal pronoun"""
 
 # ╔═╡ d19e5105-a1da-42cb-8c0b-f12bb46d9770
 pron = "וְה֣וּא"
 
 # ╔═╡ a539a604-08f9-4256-8cb1-4e879feded0d
-md"""### Adjective"""
+md"""## Adjective"""
 
 # ╔═╡ 96fc3d3d-b1b3-4b01-abad-a6c670b15149
 adj = "רָעָ֖ה"
 
 # ╔═╡ 2aaf5e92-3d16-4bcb-88c4-f4aa7449ad26
-md"""### Conjunction"""
+md"""## Conjunction"""
 
 # ╔═╡ 8128634f-3b4c-4209-bdb0-c5faa8226aac
 conj = "כִּֽי"
-
-# ╔═╡ 2eae3b3e-f51e-4953-9e3e-a0994c3fca13
-
 
 # ╔═╡ 85e2e501-d59b-44c3-886e-720e326cc4ae
 md"""> # For package"""
@@ -212,8 +212,9 @@ conjjson = bdbentries(conj)
 function format_results(wd; level = 3)
 	entries = bdbentries(wd)
 
-	hdr = "<h$(level)>$(wd): $(length(entries)) possible articles</h$(level)>"
-	output_html = []
+	sgpl = length(entries) == 1 ? "" : "s"
+	hdr = "<h$(level)>$(length(entries)) possible BDB article$(sgpl) for $(wd)</h$(level)>"
+	output_html = [hdr]
 	for e in entries
 		push!(output_html, format_entry_header(e; level = level + 1))
 		push!(output_html,"<ol>")
@@ -231,6 +232,9 @@ format_results(nountkn) |> HTML
 
 # ╔═╡ 6c4f185c-9084-456f-b957-337b35be6c3d
 format_results(prtcl) |> HTML
+
+# ╔═╡ a5a7c5c4-4fb8-43ad-bff7-9f51e3847888
+format_results(v2) |> HTML
 
 # ╔═╡ 04c887bc-d33b-4cb3-b6f7-251f992a692f
 format_results(verbtkn) |> HTML
@@ -622,14 +626,16 @@ version = "17.4.0+2"
 # ╟─93f263f6-77ae-11ef-2fe0-c34499455c33
 # ╟─3ceb6ccc-cc4c-4aa3-b05e-d83ba693864a
 # ╟─56ee851c-4080-4541-b991-05d01e60901e
-# ╟─2764acc9-dc3e-422f-bc47-d64e980de931
+# ╠═2764acc9-dc3e-422f-bc47-d64e980de931
 # ╠═4f8159f3-a35b-4b27-8f1d-ee57bd26cd66
 # ╠═4ba0e778-1a1a-4325-96d4-d73785cf4b4c
 # ╟─6e42c96b-8bec-4805-863d-0604fe467f38
 # ╟─327140ca-af29-4c15-adb9-7c91799617cf
-# ╠═6c4f185c-9084-456f-b957-337b35be6c3d
+# ╟─6c4f185c-9084-456f-b957-337b35be6c3d
 # ╠═8325ed08-67c1-4e38-8ff3-fc904540540b
 # ╟─d24420bd-1b6e-4101-a56a-bd3e8cb29bb5
+# ╟─8754f20a-4542-48c1-b9ec-2468893606c5
+# ╠═a5a7c5c4-4fb8-43ad-bff7-9f51e3847888
 # ╠═f4592e31-3cd3-4f8b-af4c-4eb43d7397e4
 # ╠═04c887bc-d33b-4cb3-b6f7-251f992a692f
 # ╠═525002d0-1612-4b7a-93fb-9372519cb0d2
@@ -650,12 +656,11 @@ version = "17.4.0+2"
 # ╟─8128634f-3b4c-4209-bdb0-c5faa8226aac
 # ╠═0cfc8313-b689-4b54-b795-cf4da903854e
 # ╠═18c9a1c8-2a06-4c4c-9b25-0caabc06b59f
-# ╠═2eae3b3e-f51e-4953-9e3e-a0994c3fca13
 # ╟─85e2e501-d59b-44c3-886e-720e326cc4ae
-# ╠═88b6429c-775f-4638-a80e-a8bb5783f86a
-# ╠═423a2453-178f-479d-9d96-1428a8b92663
-# ╠═5ca909d9-1927-4e43-a0f4-adc41200e742
-# ╠═d52caedf-86b7-4657-8ea5-6577a4291b85
+# ╟─88b6429c-775f-4638-a80e-a8bb5783f86a
+# ╟─423a2453-178f-479d-9d96-1428a8b92663
+# ╟─5ca909d9-1927-4e43-a0f4-adc41200e742
+# ╟─d52caedf-86b7-4657-8ea5-6577a4291b85
 # ╟─fa68a9c0-a9d4-4e8d-bcf0-462b1037f689
 # ╟─b7d9fdfe-34dd-4cab-93e7-9d7c8c923ddc
 # ╟─ddab8271-610b-45fd-a27f-b79c457dd0f0
