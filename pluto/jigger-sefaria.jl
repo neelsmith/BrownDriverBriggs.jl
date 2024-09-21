@@ -185,7 +185,7 @@ end
 nounjson = bdbentries(nountkn)
 
 # ╔═╡ 4f8159f3-a35b-4b27-8f1d-ee57bd26cd66
-nounjson[1]
+nounjson[1].content.senses[2].senses[1].senses
 
 # ╔═╡ 8325ed08-67c1-4e38-8ff3-fc904540540b
 particlejson = bdbentries(prtcl)
