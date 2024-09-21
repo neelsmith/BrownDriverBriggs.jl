@@ -1,0 +1,163 @@
+# API documentation
+
+
+
+## Types
+
+`Article` 
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+using BrownDriverBriggs
+@doc Article
+```
+:::
+
+
+
+`Sense` 
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc Sense
+```
+:::
+
+## Look up and format articles
+
+`bdb`
+
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc bdb
+```
+:::
+
+`html_string`
+
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc html_string
+```
+:::
+
+
+## Functions on senses
+
+
+`label`
+
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc label
+```
+:::
+
+`definition`
+
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc definition
+```
+:::
+
+`verbform`
+
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc verbform
+```
+:::
+
+`subsenses`
+
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc subsenses
+```
+:::
+
+
+## Functions on articles
+
+`id`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc id
+```
+:::
+
+`headword`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc headword
+```
+:::
+
+`strong_numbers`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc strong_numbers
+```
+:::
+
+`next_hw`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc next_hw
+```
+:::
+
+`prev_hw`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc prev_hw
+```
+:::
+
+`senses`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc senses
+```
+:::
