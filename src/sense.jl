@@ -70,6 +70,10 @@ function subsenses(s::Sense)::Vector{Sense}
     end
 end
 
+
+"""Compose HTML view of a sense.
+$(SIGNATURES)
+"""
 function html_string(s::Sense)::String
     formatted = String[]
     if ! isnothing(label(s))

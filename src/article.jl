@@ -74,7 +74,9 @@ function senses(a::Article)
 	map(s -> Sense(s), a.json.content.senses)
 end
 
-
+"""Compose HTML view of an article
+$(SIGNATURES)
+"""
 function html_string(a::Article; level = 3)::String
 	formatted = String[]
 
