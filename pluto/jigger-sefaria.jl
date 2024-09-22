@@ -269,7 +269,7 @@ PlutoUI = "~0.7.60"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.4"
+julia_version = "1.10.5"
 manifest_format = "2.0"
 project_hash = "328168ab25fc5f53f7e718e64be0bd754798d21c"
 
@@ -607,7 +607,7 @@ version = "1.2.13+1"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
-version = "5.8.0+1"
+version = "5.11.0+0"
 
 [[deps.nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
@@ -621,11 +621,11 @@ version = "17.4.0+2"
 """
 
 # ╔═╡ Cell order:
-# ╟─e6c60d69-1049-429a-aff1-46eebdb56cd6
+# ╠═e6c60d69-1049-429a-aff1-46eebdb56cd6
 # ╟─10988234-43fd-4b92-be40-9a87df882ce8
 # ╟─93f263f6-77ae-11ef-2fe0-c34499455c33
 # ╟─3ceb6ccc-cc4c-4aa3-b05e-d83ba693864a
-# ╟─56ee851c-4080-4541-b991-05d01e60901e
+# ╠═56ee851c-4080-4541-b991-05d01e60901e
 # ╠═2764acc9-dc3e-422f-bc47-d64e980de931
 # ╠═4f8159f3-a35b-4b27-8f1d-ee57bd26cd66
 # ╠═4ba0e778-1a1a-4325-96d4-d73785cf4b4c
