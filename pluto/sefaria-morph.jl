@@ -57,7 +57,40 @@ map(bdbplus) do article
 end
 
 # ╔═╡ 160d361f-e7da-4827-b3d7-70f305c71432
+"""Get parsed JSON for all Strong entries for a word.
+"""
+function strongentries(wd)
+	filter(BrownDriverBriggs.parse_url(BrownDriverBriggs.LEXICON_API * wd)) do entry 
+		entry.parent_lexicon == "BDB Augmented Strong"
+	end
+end
 
+
+# ╔═╡ 4988cf67-2b9b-457c-bd17-1714a3dc17f3
+strong = strongentries(tkn)
+
+# ╔═╡ 6b7dae10-5fe6-4b9c-a631-6796ed7e0718
+strong[1].content.morphology
+
+# ╔═╡ a3417acd-243b-49fc-bb60-c7b874f6ac3e
+"""Data from a Strong entry."""
+struct Strong
+	pos
+	strong_number
+	headword
+end
+
+# ╔═╡ 9bbfa655-81f0-4885-b71d-da6c08c64451
+"""Extract Strong data from Sefaria JSON object."""
+function strengthen(jsonobj)
+	pos = jsonobj.content.morphology
+	strongnum = jsonobj.strong_number
+	headword = jsonobj.headword
+	Strong(pos, strongnum, headword)
+end
+
+# ╔═╡ 41271d9e-ec83-435c-aa91-6b2e8b2e42b6
+strengthen.(strong)
 
 # ╔═╡ Cell order:
 # ╠═68026c63-5cf5-47a5-a318-3440de7d201a
@@ -71,3 +104,8 @@ end
 # ╠═ec224a8c-dd33-4d1d-b8d0-659c8954155a
 # ╠═22f283cb-e9bd-4812-beac-c2fa7335667d
 # ╠═160d361f-e7da-4827-b3d7-70f305c71432
+# ╠═4988cf67-2b9b-457c-bd17-1714a3dc17f3
+# ╠═6b7dae10-5fe6-4b9c-a631-6796ed7e0718
+# ╠═41271d9e-ec83-435c-aa91-6b2e8b2e42b6
+# ╠═a3417acd-243b-49fc-bb60-c7b874f6ac3e
+# ╠═9bbfa655-81f0-4885-b71d-da6c08c64451

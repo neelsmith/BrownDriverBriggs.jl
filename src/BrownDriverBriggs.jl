@@ -20,11 +20,13 @@ export senses
 export Sense
 export label, definition, verbform, subsenses
 
+export Strong
 
 include("json.jl")
 include("html.jl")
 include("sense.jl")
 include("article.jl")
+include("strong.jl")
 
 
 end # module BrownDriverBriggs
