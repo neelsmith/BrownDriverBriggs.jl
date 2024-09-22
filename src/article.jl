@@ -85,10 +85,10 @@ function html_string(a::Article; level = 3)::String
 	singpl = length(senses(a)) == 1 ? "" : "s"
 	push!(formatted, """<p>Article  <code>$(id(a))</code> has <b>$(length(senses(a)))</b> sense$(singpl)</p>""")
 
-
+	push!(formatted,"<ul>")
 	for s in senses(a)
-		push!(formatted, html_string(s))
+		push!(formatted, "<li>" * html_string(s) * "</li>")
 	end
-
+	push!(formatted, "</ul>")
 	join(formatted, "\n\n")
 end
