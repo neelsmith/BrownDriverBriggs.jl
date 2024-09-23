@@ -3,3 +3,10 @@
 :::{.callout-caution}
 TBA
 :::
+
+
+- get a list of `BDBplus` objects
+- map each object's `strong` list to `pos`
+- filter strong list for `v`
+- findall where strong list not empty
+- pair up bdbpolus.bdb with new strong list
