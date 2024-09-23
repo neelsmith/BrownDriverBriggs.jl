@@ -8,13 +8,15 @@ using Downloads
 using TestSetExtensions
 using Documenter, DocStringExtensions
 
-export bdb, strong
+export bdb, strong, bdbplus
 export html_string
 
 export Article
 export id, headword, strong_numbers
 export next_hw, prev_hw
 export senses
+export strongmatches
+
 #export next, prev
 
 export Sense
