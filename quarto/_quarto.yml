@@ -5,7 +5,7 @@ theme: spacelab
 execute:
   freeze: auto
 date: last-modified  
-margin-header: "Package version: `0.1.0`"
+margin-header: "Package version: `0.2.0`"
 
 format:
   html: 
@@ -46,6 +46,9 @@ website:
     - title: "Tutorials"
       contents: 
         - tutorials/index.qmd
+        - tutorials/bdb.qmd
+        - tutorials/strong.qmd
+        - tutorials/bdbplus.qmd
         
         
         
@@ -57,7 +60,9 @@ website:
     - title: "Reference"
       contents: 
         - reference/index.qmd
-        - reference/apis.qmd
+        - reference/bdb.qmd
+        - reference/strong.qmd
+        - reference/bdbplus.qmd
         
 
 

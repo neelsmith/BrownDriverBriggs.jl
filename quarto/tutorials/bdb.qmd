@@ -1,0 +1,46 @@
+# Digital *BDB* from Sefaria
+
+*Overview*: you can
+
+- retrieve articles from *BDB* and sections of articles
+- you can format entire articles or sectoins of articles in HTML
+
+
+## Articles and sections of articles in BDB
+
+Find articles in BDB that Sefaria indexes a Hebrew word to.  THe result is a Vector of `Article`s.
+
+```{julia}
+using BrownDriverBriggs 
+articles = bdb("בָּרָ֣א")
+```
+
+Articles are divided into sections by sense. The `senses` function returns a Vector of `Sense`s.
+
+```{julia}
+article = articles[3]
+sections = senses(article)
+```
+
+
+Some sections may have futher subsections.
+
+```{julia}
+subsenses(sections[2])
+```
+
+### Format BDB content as HTML: sections
+
+You can format individual sections as HTML:
+
+```{julia}
+html_string(sections[1]) |> HTML
+```
+
+### Format BDB content as HTML: articles
+
+Use the same function to format entire articles as HTML:
+
+```{julia}
+html_string(article) |> HTML
+```
