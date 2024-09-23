@@ -94,19 +94,7 @@ function html_string(a::Article; level = 3)::String
 end
 
 
-function strongmatches(a::Article, stronglist::Vector{Strong})::Vector{Strong}
-	filter(stronglist) do strong_entry
-		id(strong_entry) in strong_numbers(a)
-	end
-end
 
 
 
-function bdbplus(tkn::AbstractString)::Vector{@NamedTuple{bdb::Article, strong::Vector{Strong}}}
-	bdblist = bdb(tkn)
-	stronglist = strong(tkn)
 
-	map(bdblist) do article
-		(bdb = article, strong = strongmatches(article, stronglist))
-	end
-end

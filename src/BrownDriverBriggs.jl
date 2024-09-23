@@ -25,11 +25,14 @@ export label, definition, verbform, subsenses
 export Strong
 export pos, definitions, bdbmatches
 
+export BDBplus
+export bdbplus
+
 include("json.jl")
 include("html.jl")
 include("sense.jl")
 include("article.jl")
 include("strong.jl")
-
+include("bdbplus.jl")
 
 end # module BrownDriverBriggs

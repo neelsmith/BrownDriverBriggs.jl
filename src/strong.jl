@@ -43,11 +43,4 @@ function strong(tkn::AbstractString)::Vector{Strong}
 end
 
 
-"""Find all BDB articles that are indexed to a given Strong entry.
-$(SIGNATURES)
-"""
-function bdbmatches(strong_entry::Strong, bdblist::Vector{Article})::Vector{Article}
-	filter(bdblist) do article
-		id(strong_entry) in strong_numbers(article)
-	end
-end
+
