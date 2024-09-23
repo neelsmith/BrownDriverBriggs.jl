@@ -55,6 +55,7 @@ website:
     - title: "Guides"
       contents:
         - guides/index.qmd
+        - guides/pos.qmd
        
         
     - title: "Reference"

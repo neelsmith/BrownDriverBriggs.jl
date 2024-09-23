@@ -1,3 +1,4 @@
-# Guides
+# How-to guides
 
-Content TBA
+
+This section collects recipes for how to do specific tasks using `BrownDriverBriggs`. 
