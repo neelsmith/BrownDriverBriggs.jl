@@ -1,3 +1,50 @@
 # Documentation: the `BDBplus` type
 
+## Type
 
+`BDBPlus`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+using BrownDriverBriggs
+@doc BDBPlus
+```
+:::
+
+
+## Functions
+
+
+`strongmatches`
+
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc strongmatches
+```
+:::
+
+`bdbmatches`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc bdbmatches
+```
+:::
+
+
+`label`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc label
+```
+:::
