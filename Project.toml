@@ -1,7 +1,7 @@
 name = "BrownDriverBriggs"
 uuid = "ed877a0f-8e86-4599-984a-df81107104eb"
 authors = ["Neel Smith <dnsmith.neel@gmail.com>"]
-version = "0.1.1"
+version = "0.2.0"
 
 [deps]
 BiblicalHebrew = "23d2231d-1fc1-47c2-a612-987552d9b38e"
