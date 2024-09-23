@@ -31,18 +31,50 @@ subsenses(sections[2])
 
 ## Formatting *BDB* content as HTML
 
-### Format *BDB* content as HTML: sections
+### Format sections of articles as HTML
 
-You can format individual sections as HTML:
+You can format individual sections as HTML with the `html_string` function.  
+
+
+:::{.callout-note title="Input"}
+This code:
+:::
 
 ```{julia}
+#| output: false
+html_string(sections[1])
+```
+
+:::{.callout-note title="Output"}
+yields this output:
+:::
+
+```{julia}
+#| echo: false
 html_string(sections[1]) |> HTML
 ```
 
-### Format *BDB* content as HTML: articles
+### Format *BDB* articles as HTML
 
-Use the same function to format entire articles as HTML:
+The syntax is the same for entire articles. 
+
+
+:::{.callout-note title="Input"}
+This code:
+:::
 
 ```{julia}
+#| output: false
+html_string(article)
+```
+
+
+:::{.callout-note title="Output"}
+yields this output:
+:::
+
+
+```{julia}
+#| echo: false
 html_string(article) |> HTML
 ```
