@@ -22,10 +22,6 @@ function strongentries(wd)
 	end
 end
 
-
-
-
-
 """Get parsed JSON for all BDB entries for a word.
 $(SIGNATURES)
 """

@@ -8,7 +8,7 @@ using Downloads
 using TestSetExtensions
 using Documenter, DocStringExtensions
 
-export bdb
+export bdb, strong
 export html_string
 
 export Article
@@ -21,6 +21,7 @@ export Sense
 export label, definition, verbform, subsenses
 
 export Strong
+export pos, definitions, bdbmatches
 
 include("json.jl")
 include("html.jl")
