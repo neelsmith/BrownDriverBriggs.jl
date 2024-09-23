@@ -108,7 +108,13 @@ strengthen.(bdbplus)
 dbdplusexample = strengthen(bdbplus[5])
 
 # ╔═╡ 77acb21e-6e6f-4e7c-b7cc-be8407eba534
-dbdplusexample.strong_number
+bdbmatch = filter(bdbarticles) do a
+	dbdplusexample.strong_number in strong_numbers(a)
+end[1]
+
+
+# ╔═╡ d7d0e690-7771-49d6-9745-5bf6206b7068
+"""$(bdbmatch) pairs with part of speech `$(dbdplusexample.pos)`""" |> Markdown.parse
 
 # ╔═╡ Cell order:
 # ╟─68026c63-5cf5-47a5-a318-3440de7d201a
@@ -133,3 +139,4 @@ dbdplusexample.strong_number
 # ╠═6ab07294-f6aa-443c-822e-6e8efec66641
 # ╠═64be56eb-99e4-461f-a240-59a746c7ffb6
 # ╠═77acb21e-6e6f-4e7c-b7cc-be8407eba534
+# ╠═d7d0e690-7771-49d6-9745-5bf6206b7068
