@@ -13,4 +13,5 @@ It uses the endpoint at `https://www.sefaria.org/api/words` to retrieve articles
 `BrownDriverBriggs` provides a Julia model for articles and sections of articles in *BDB* and for related information in *Strong*.
 
 - See [introductory tutorials](./tutorials/)
+- [Recipes for more complex tasks](./guides/)
 - See [reference material](./reference/), including API documentation
