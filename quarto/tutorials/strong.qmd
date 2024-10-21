@@ -4,5 +4,62 @@ engine: julia
 
 # Sefaria's digital data from *Strong*
 
+:::{.callout-note title="Key points"}
 
-TBD
+
+Retrieve Sefaria's digital data derived from Strong: `strong`
+
+
+For a given record;
+
+1. find headword (lemma): `headword`
+1. find list of short definitions: `definitions`
+1. find part of speech code: `pos`
+
+:::
+
+## Finding data from Strong for a token
+
+Sefaria has indexed individual tokens in the Hebrew Bible to key data from the corresponding entry in Strong's *Concordance*.
+
+
+```{julia}
+using BrownDriverBriggs 
+records = strong("בָּרָ֣א")
+```
+
+
+## Working with elements of a Strong record
+
+Each record includes an id, a headword (or *lemma*), a list of short definitions, and a part of speech. You can extract this information with the `id`, `headword`, `definitions` and `pos` functions, respectively as the following examples illustrate.
+
+The previous search yields a list of five records. Here are their unique IDs.
+
+```{julia}
+id.(records)
+```
+
+How many distinct headwords could the five records derive from?
+
+```{julia}
+headword.(records) |> unique
+```
+
+What distinct parts of speech do they represent?
+
+
+```{julia}
+pos.(records) |> unique
+```
+
+Filter out verb forms:
+
+```{julia}
+verbs = filter(record -> pos(record) == "v", records)
+```
+
+Find the short definitions for the single verb form:
+
+```{julia}
+definitions(verbs[1])
+```

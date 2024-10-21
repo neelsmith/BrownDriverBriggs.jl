@@ -3,7 +3,7 @@ struct Strong
 	json::JSON3.Object
 end
 
-"""Override Base.show for a BDB article.
+"""Override Base.show for a Strong entry.
 $(SIGNATURES)
 """
 function show(io::IO, strong_entry::Strong)

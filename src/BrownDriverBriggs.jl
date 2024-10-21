@@ -1,6 +1,7 @@
 module BrownDriverBriggs
 
 import Base: show
+import Base: ==
 
 using JSON3
 using Downloads
@@ -26,7 +27,7 @@ export Strong
 export pos, definitions, bdbmatches
 
 export BDBplus
-export bdbplus
+export bdbplus, bdbid, strongids
 
 include("json.jl")
 include("html.jl")

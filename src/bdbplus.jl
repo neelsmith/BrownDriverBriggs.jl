@@ -3,6 +3,15 @@ struct BDBplus
     strong::Vector{Strong}
 end
 
+
+function bdb(bdbplus::BDBplus)
+	bdbplus.article
+end
+
+function strong(bdbplus::BDBplus)
+	bdbplus.strong
+end
+
 """Override Base.show for a BDB article with Strong entries.
 $(SIGNATURES)
 """
@@ -47,4 +56,14 @@ function bdbmatches(strong_entry::Strong, bdblist::Vector{Article})::Vector{Arti
 	filter(bdblist) do article
 		id(strong_entry) in strong_numbers(article)
 	end
+end
+
+
+function bdbid(bdbplus::BDBplus)
+	id(bdbplus.article)
+end
+
+
+function strongids(bdbplus::BDBplus)
+	id.(bdbplus.strong)
 end

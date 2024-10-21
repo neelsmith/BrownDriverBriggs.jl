@@ -3,15 +3,47 @@ engine: julia
 ---
 
 
-# Filter *BDB* articles using part of speech designation from *Strong*
+# Filter *BDB* articles using the part of speech designation from *Strong*
 
-:::{.callout-caution}
-TBA
-:::
+Let's start with *BDB* plus Strong data for a token:
+
+```{julia}
+using BrownDriverBriggs 
+plusentries = bdbplus("בָּרָ֣א")
+```
+
+Let's separate out those *BDB* articles that Strong identifies as verb forms. For each entry in `plusentries`, we  therefore want to see if it has a part of speech value of `v` in any of its associated Strong record.
 
 
-- get a list of `BDBplus` objects
-- map each object's `strong` list to `pos`
-- filter strong list for `v`
-- findall where strong list not empty
-- pair up bdbpolus.bdb with new strong list
+```{julia}
+verbarticles = filter(plusentries) do plusentry
+    strongs = strong(plusentry)
+    !isempty(filter(st -> pos(st) == "v", strongs))
+end
+```   
+
+
+We can extract the BDB articles, and format them as HTML.
+
+```{julia}
+bdbarticles = bdb.(verbarticles)
+formatted = html_string.(bdbarticles)
+```
+
+Here are the results:
+
+
+- **first article**:
+
+```{julia}
+#| echo: false
+formatted[1] |> HTML
+```
+
+
+- **second article**:
+
+```{julia}
+#| echo: false
+formatted[2] |> HTML
+```

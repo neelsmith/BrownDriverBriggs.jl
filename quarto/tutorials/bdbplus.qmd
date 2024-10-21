@@ -6,4 +6,32 @@ engine: julia
 # *BDB* combined with *Strong*
 
 
-TBD
+:::{.callout-note title="Summary"}
+Use the `bdbplus` function to retrieve articles from *BDB* together with data from Strong's *Concordance*
+:::
+
+## Combine articles in *BDB* with data from Strong
+
+Find articles in *BDB* that Sefaria indexes a Hebrew word to, and join a list of records from Strong's *Concordance*. The result is a Vector of `BDBplus`s.
+
+```{julia}
+using BrownDriverBriggs 
+plusentries = bdbplus("בָּרָ֣א")
+```
+
+```{julia}
+typeof(plusentries)
+```
+
+The BDB articles are the same ones you would find if you used the `bdb` function with a token: you can also used `bdb` to extract the articles from a `BDBplus` object.
+
+```{julia}
+bdb.(plusentries)
+```
+
+Similarly, the `bdbid` function extracts the ID for the BDB article.  You can easily prove that the two lists have identical IDs:
+
+
+```{julia}
+bdbid.(plusentries) == id.(bdb("בָּרָ֣א"))
+```

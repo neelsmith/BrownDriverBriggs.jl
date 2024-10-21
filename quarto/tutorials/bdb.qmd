@@ -11,7 +11,7 @@ engine: julia
 
 ## Articles and sections of articles in *BDB*
 
-Find articles in *BDB* that Sefaria indexes a Hebrew word to.  THe result is a Vector of `Article`s.
+Find articles in *BDB* that Sefaria indexes a Hebrew word to.  The result is a Vector of `Article`s.
 
 ```{julia}
 using BrownDriverBriggs 
