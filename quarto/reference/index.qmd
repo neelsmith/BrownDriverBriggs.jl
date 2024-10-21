@@ -1,4 +1,12 @@
+---
+engine: julia
+---
+
 # Reference
 
 
-- [API documentation](./apis.qmd)
+API documentation:
+
+- the [`Article` and `Sense` types](./bdb.qmd)
+- the [`Strong` type](./strong.qmd)
+- the [`BDBplus` type](./bdbplus.qmd)

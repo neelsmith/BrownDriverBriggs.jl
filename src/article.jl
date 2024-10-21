@@ -4,6 +4,10 @@ struct Article
 	json::JSON3.Object
 end
 
+function ==(a1::Article, a2::Article)
+    a1.json == a2.json
+end
+
 
 """Override Base.show for a BDB article.
 $(SIGNATURES)
@@ -92,3 +96,9 @@ function html_string(a::Article; level = 3)::String
 	push!(formatted, "</ul>")
 	join(formatted, "\n\n")
 end
+
+
+
+
+
+

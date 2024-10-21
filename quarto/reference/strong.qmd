@@ -1,0 +1,83 @@
+---
+engine: julia
+---
+
+# Documentation: the `Strong` type
+
+## Type
+
+`Strong` 
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+using BrownDriverBriggs
+@doc Strong
+```
+:::
+
+
+
+## Functions 
+
+`pos`
+
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc pos
+```
+:::
+
+`id`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc id
+```
+:::
+
+`headword`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc headword
+```
+:::
+
+`label`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc label
+```
+:::
+
+`definitions`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc definitions
+```
+:::
+
+`strong`
+
+:::{.callout-note appearance="minimal"}
+```{julia}
+#| echo: false
+#| warning: false
+@doc strong
+```
+:::

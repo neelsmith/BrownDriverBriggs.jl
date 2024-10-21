@@ -1,3 +1,8 @@
-# Guides
+---
+engine: julia
+---
 
-Content TBA
+# How-to guides
+
+
+This section collects recipes for how to do specific tasks using `BrownDriverBriggs`. 

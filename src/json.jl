@@ -16,6 +16,15 @@ end
 """Get parsed JSON for all BDB entries for a word.
 $(SIGNATURES)
 """
+function strongentries(wd)
+	filter(parse_url(LEXICON_API * wd)) do entry 
+		entry.parent_lexicon == "BDB Augmented Strong"
+	end
+end
+
+"""Get parsed JSON for all BDB entries for a word.
+$(SIGNATURES)
+"""
 function bdbentries(wd)
 	filter(parse_url(LEXICON_API * wd)) do entry 
 		entry.parent_lexicon == "BDB Dictionary"

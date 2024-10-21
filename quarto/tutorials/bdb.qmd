@@ -1,0 +1,84 @@
+---
+engine: julia
+---
+
+# Digital *BDB* from Sefaria
+
+:::{.callout-note title="Summary"}
+1. retrieve articles from *BDB* and sections of articles: `bdb`, `senses` and `subsenses` functions
+1. format entire articles or sections of articles in HTML: `html_string` function
+:::
+
+## Articles and sections of articles in *BDB*
+
+Find articles in *BDB* that Sefaria indexes a Hebrew word to.  The result is a Vector of `Article`s.
+
+```{julia}
+using BrownDriverBriggs 
+articles = bdb("בָּרָ֣א")
+```
+
+Articles are divided into sections by sense. The `senses` function returns a Vector of `Sense`s.
+
+```{julia}
+article = articles[3]
+sections = senses(article)
+```
+
+
+Some sections may have futher subsections.
+
+```{julia}
+subsenses(sections[2])
+```
+
+
+## Formatting *BDB* content as HTML
+
+### Format sections of articles as HTML
+
+You can format individual sections as HTML with the `html_string` function.  
+
+
+:::{.callout-note title="Input"}
+This code:
+:::
+
+```{julia}
+#| output: false
+html_string(sections[1])
+```
+
+:::{.callout-note title="Output"}
+yields this output:
+:::
+
+```{julia}
+#| echo: false
+html_string(sections[1]) |> HTML
+```
+
+### Format *BDB* articles as HTML
+
+The syntax is the same for entire articles. 
+
+
+:::{.callout-note title="Input"}
+This code:
+:::
+
+```{julia}
+#| output: false
+html_string(article)
+```
+
+
+:::{.callout-note title="Output"}
+yields this output:
+:::
+
+
+```{julia}
+#| echo: false
+html_string(article) |> HTML
+```
