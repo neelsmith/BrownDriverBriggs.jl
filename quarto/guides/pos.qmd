@@ -30,23 +30,7 @@ bdbarticles = bdb.(verbarticles)
 formatted = html_string.(bdbarticles)
 ```
 
-Here are the results:
-
-
-- **first article**:
-
-```{julia}
-#| echo: false
-formatted[1] |> HTML
-```
-
-
-- **second article**:
-
-```{julia}
-#| echo: false
-formatted[2] |> HTML
-```
+## A useful function 
 
 This is useful enough that we could wrap it up in a simple function.
 
@@ -65,4 +49,23 @@ end
 
 ```{julia}
 posarticles("בָּרָ֣א", "v")
+```
+
+
+## Results
+
+Here are the results of formatting the articles as HTML strings.
+
+
+### First article
+
+```{julia}
+formatted[1] |> HTML
+```
+
+
+### Second article
+
+```{julia}
+formatted[2] |> HTML
 ```
