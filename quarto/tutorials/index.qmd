@@ -1,3 +1,8 @@
+---
+engine: julia
+---
+
+
 # Quick starts
 
 - articles from [*BDB*](./bdb.qmd)

@@ -1,3 +1,7 @@
+---
+engine: julia
+---
+
 # Digital *BDB* from Sefaria
 
 :::{.callout-note title="Summary"}

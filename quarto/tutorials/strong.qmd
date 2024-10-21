@@ -1,3 +1,7 @@
+---
+engine: julia
+---
+
 # Sefaria's digital data from *Strong*
 
 
