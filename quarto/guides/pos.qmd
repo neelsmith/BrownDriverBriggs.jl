@@ -47,3 +47,22 @@ formatted[1] |> HTML
 #| echo: false
 formatted[2] |> HTML
 ```
+
+This is useful enough that we could wrap it up in a simple function.
+
+```{julia}
+"Find BDB articles for a given token that have a given part of speech code."
+function posarticles(tkn, poscode)
+    plusentries = bdbplus(tkn)
+    posarticles = filter(plusentries) do plusentry
+        strongs = strong(plusentry)
+        !isempty(filter(st -> pos(st) == poscode, strongs))
+    end
+    bdb.(posarticles)
+end
+```
+
+
+```{julia}
+posarticles("בָּרָ֣א", "v")
+```
